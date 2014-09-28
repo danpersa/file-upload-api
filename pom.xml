@@ -3,20 +3,28 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.danix.example</groupId>
-    <artifactId>spring-jaxrs-example</artifactId>
+    <artifactId>file-upload-example</artifactId>
     <packaging>pom</packaging>
-    <name>spring-jaxrs-example</name>
+    <name>file-upload-example</name>
     <version>0.0.1-SNAPSHOT</version>
     <description>Project that shows how to integrate spring with jaxrs</description>
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>1.1.7.RELEASE</version>
+    </parent>
+
     <modules>
-        <module>spring-jaxrs-api</module>
-        <module>spring-jaxrs-frontend</module>
-        <module>spring-jaxrs-backend</module>
+        <module>file-upload-api</module>
+        <module>file-upload-frontend</module>
+        <module>file-upload-backend</module>
     </modules>
+
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <org.springframework.version>4.0.2.RELEASE</org.springframework.version>
-        <org.jboss.resteasy.version>3.0.6.Final</org.jboss.resteasy.version>
+        <org.springframework.version>4.1.0.RELEASE</org.springframework.version>
+        <org.jboss.resteasy.version>3.0.9.Final</org.jboss.resteasy.version>
         <org.slf4j.version>1.7.2</org.slf4j.version>
         <ch.qos.logback.version>1.0.9</ch.qos.logback.version>
         <org.apache.httpcomponents.version>4.2.3</org.apache.httpcomponents.version>
@@ -27,18 +35,18 @@
         <guava.version>16.0.1</guava.version>
         <junit.version>4.11</junit.version>
     </properties>
-    <repositories>
-        <repository>
-            <id>springsource-repo</id>
-            <name>SpringSource Repository</name>
-            <url>http://repo.springsource.org/release</url>
-        </repository>
-        <repository>
-            <id>jboss-releases</id>
-            <name>JBoss Releases</name>
-            <url>https://repository.jboss.org/nexus/content/repositories/releases/</url>
-        </repository>
-    </repositories>
+    <!--<repositories>-->
+        <!--<repository>-->
+            <!--<id>springsource-repo</id>-->
+            <!--<name>SpringSource Repository</name>-->
+            <!--<url>http://repo.springsource.org/release</url>-->
+        <!--</repository>-->
+        <!--<repository>-->
+            <!--<id>jboss-releases</id>-->
+            <!--<name>JBoss Releases</name>-->
+            <!--<url>https://repository.jboss.org/nexus/content/repositories/releases/</url>-->
+        <!--</repository>-->
+    <!--</repositories>-->
     <build>
         <pluginManagement>
             <plugins>
@@ -74,12 +82,12 @@
                 <plugin>
                     <groupId>org.apache.tomcat.maven</groupId>
                     <artifactId>tomcat7-maven-plugin</artifactId>
-                    <version>2.0-SNAPSHOT</version>
+                    <version>2.2</version>
                 </plugin>
             </plugins>
         </pluginManagement>
-        
-        
+
+
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -91,9 +99,9 @@
                 </configuration>
             </plugin>
         </plugins>
-            
+
     </build>
-    
+
     <dependencyManagement>
         <dependencies>
             <!-- spring framework -->
@@ -147,7 +155,7 @@
                 <artifactId>spring-webmvc</artifactId>
                 <version>${org.springframework.version}</version>
             </dependency>
-            
+
             <!-- validation -->
             <dependency>
                 <groupId>javax.validation</groupId>
@@ -159,7 +167,7 @@
                 <artifactId>hibernate-validator</artifactId>
                 <version>${hibernate-validator.version}</version>
             </dependency>
-            
+
             <!-- rest easy -->
             <dependency>
                 <groupId>org.jboss.resteasy</groupId>
@@ -178,20 +186,12 @@
                 <version>${org.jboss.resteasy.version}</version>
                 <scope>runtime</scope>
             </dependency>
+            <dependency>
+                <groupId>org.jboss.resteasy</groupId>
+                <artifactId>resteasy-multipart-provider</artifactId>
+                <version>${org.jboss.resteasy.version}</version>
+            </dependency>
 
-            <!-- Jackson is a high-performance JSON processor (parser, generator) -->
-            <dependency>
-                <groupId>org.codehaus.jackson</groupId>
-                <artifactId>jackson-core-asl</artifactId>
-                <version>${jackson.version}</version>
-            </dependency>
-            <!-- Data Mapper package is a high-performance data binding package built on Jackson JSON processor -->
-            <dependency>
-                <groupId>org.codehaus.jackson</groupId>
-                <artifactId>jackson-mapper-asl</artifactId>
-                <version>${jackson.version}</version>
-            </dependency>
-            
 
             <!-- logging -->
             <dependency>
@@ -216,6 +216,23 @@
                 <artifactId>logback-core</artifactId>
                 <version>${ch.qos.logback.version}</version>
                 <scope>runtime</scope>
+            </dependency>
+
+            <!-- jackson -->
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-core</artifactId>
+                <version>2.4.2</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-databind</artifactId>
+                <version>2.4.2</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-annotations</artifactId>
+                <version>2.4.2</version>
             </dependency>
 
             <!-- other libraries -->

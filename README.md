@@ -11,8 +11,8 @@ The project uses the following technologies:
 
 ## How to run it
 * run 'mvn clean install' inside the main project
-* run 'mvn tomcat7:run' inside the spring-jaxrs-backend folder
-* run 'mvn tomcat7:run' inside the spring-jaxrs-frontend folder
+* run 'mvn tomcat7:run' inside the file-upload-backend folder
+* run 'mvn tomcat7:run' inside the file-upload-frontend folder
 * go to http://localhost:8090/
 
 ## Call the API from the browser:
