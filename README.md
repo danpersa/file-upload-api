@@ -19,12 +19,12 @@ The project uses the following technologies:
 
 - get file meta data
 
-    http://localhost:xxxx/files/{id}
+    `http://localhost:xxxx/files/{id}`
 
 - download file
 
-    http://localhost:xxxx/files/{id}/download
+    `http://localhost:xxxx/files/{id}/download`
 
 - upload file with POST
 
-    http://localhost:xxxx/files/
+    `http://localhost:xxxx/files/`
